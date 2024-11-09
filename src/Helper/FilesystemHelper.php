@@ -36,7 +36,12 @@ final class FilesystemHelper
 {
     public static function createFileObject(string $filename, string $rootPath): Finder\SplFileInfo
     {
-        $pathname = Filesystem\Path::join($rootPath, $filename);
+        if (Filesystem\Path::isAbsolute($filename)) {
+            $pathname = $filename;
+            $filename = Filesystem\Path::makeRelative($filename, $rootPath);
+        } else {
+            $pathname = Filesystem\Path::join($rootPath, $filename);
+        }
 
         return new Finder\SplFileInfo(
             $pathname,
