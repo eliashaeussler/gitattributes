@@ -50,4 +50,19 @@ final class FilesystemHelperTest extends Framework\TestCase
 
         self::assertEquals($expected, Src\Helper\FilesystemHelper::createFileObject($filename, $rootPath));
     }
+
+    #[Framework\Attributes\Test]
+    public function createFileObjectAcceptsAbsolutePaths(): void
+    {
+        $filename = '/foo/bar/baz/baz.txt';
+        $rootPath = '/foo/bar';
+
+        $expected = new Finder\SplFileInfo(
+            '/foo/bar/baz/baz.txt',
+            'baz',
+            'baz/baz.txt',
+        );
+
+        self::assertEquals($expected, Src\Helper\FilesystemHelper::createFileObject($filename, $rootPath));
+    }
 }
