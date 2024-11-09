@@ -29,8 +29,6 @@ use Symfony\Component\Filesystem;
 
 use function dirname;
 use function file_exists;
-use function mkdir;
-use function rmdir;
 use function touch;
 use function unlink;
 
@@ -45,14 +43,16 @@ final class GitattributesDumperTest extends Framework\TestCase
 {
     private string $testRootPath;
     private Src\GitattributesDumper $subject;
+    private Filesystem\Filesystem $filesystem;
 
     public function setUp(): void
     {
         $this->testRootPath = dirname(__DIR__, 2).'/.build/test-dummy';
         $this->subject = new Src\GitattributesDumper($this->testRootPath);
+        $this->filesystem = new Filesystem\Filesystem();
 
-        if (!file_exists($this->testRootPath)) {
-            mkdir($this->testRootPath, 0777, true);
+        if (!$this->filesystem->exists($this->testRootPath)) {
+            $this->filesystem->mkdir($this->testRootPath);
         }
     }
 
@@ -112,6 +112,6 @@ EOF;
 
     protected function tearDown(): void
     {
-        rmdir($this->testRootPath);
+        $this->filesystem->remove($this->testRootPath);
     }
 }
