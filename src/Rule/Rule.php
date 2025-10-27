@@ -59,7 +59,7 @@ final class Rule implements Stringable
         }
 
         $parts = array_map(
-            'trim',
+            trim(...),
             explode(' ', (string) preg_replace('/\s{2,}/', ' ', $rule)),
         );
         $pattern = array_shift($parts);
@@ -87,7 +87,7 @@ final class Rule implements Stringable
     {
         return implode(' ', [
             $this->pattern->pattern(),
-            ...array_map('strval', $this->attributes),
+            ...array_map(strval(...), $this->attributes),
         ]);
     }
 
