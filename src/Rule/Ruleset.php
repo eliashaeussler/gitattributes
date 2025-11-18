@@ -34,14 +34,14 @@ use function implode;
  * @author Elias Häußler <elias@haeussler.dev>
  * @license GPL-3.0-or-later
  */
-final class Ruleset implements Stringable
+final readonly class Ruleset implements Stringable
 {
     /**
      * @param list<Rule> $rules
      */
     public function __construct(
-        private readonly Finder\SplFileInfo $file,
-        private readonly array $rules,
+        private Finder\SplFileInfo $file,
+        private array $rules,
     ) {}
 
     public function file(): Finder\SplFileInfo
