@@ -42,10 +42,10 @@ use function trim;
  * @author Elias Häußler <elias@haeussler.dev>
  * @license GPL-3.0-or-later
  */
-final class FilePattern implements Stringable
+final readonly class FilePattern implements Stringable
 {
     public function __construct(
-        private readonly string $pattern,
+        private string $pattern,
     ) {}
 
     public function pattern(): string

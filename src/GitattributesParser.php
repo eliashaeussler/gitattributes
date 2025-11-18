@@ -35,10 +35,10 @@ use function is_readable;
  * @author Elias Häußler <elias@haeussler.dev>
  * @license GPL-3.0-or-later
  */
-final class GitattributesParser
+final readonly class GitattributesParser
 {
     public function __construct(
-        private readonly string $rootPath,
+        private string $rootPath,
     ) {}
 
     /**

@@ -39,14 +39,14 @@ use function trim;
  * @author Elias Häußler <elias@haeussler.dev>
  * @license GPL-3.0-or-later
  */
-final class Rule implements Stringable
+final readonly class Rule implements Stringable
 {
     /**
      * @param list<Attribute\Attribute> $attributes
      */
     public function __construct(
-        private readonly Pattern\FilePattern $pattern,
-        private readonly array $attributes,
+        private Pattern\FilePattern $pattern,
+        private array $attributes,
     ) {}
 
     public static function fromString(string $rule): ?self

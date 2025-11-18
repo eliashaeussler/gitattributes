@@ -37,12 +37,12 @@ use function trim;
  * @author Elias Häußler <elias@haeussler.dev>
  * @license GPL-3.0-or-later
  */
-final class Attribute implements Stringable
+final readonly class Attribute implements Stringable
 {
     private function __construct(
-        private readonly AttributeState $state,
-        private readonly ?AttributeName $name = null,
-        private readonly ?string $value = null,
+        private AttributeState $state,
+        private ?AttributeName $name = null,
+        private ?string $value = null,
     ) {}
 
     public static function set(AttributeName $name): self
