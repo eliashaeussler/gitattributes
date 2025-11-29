@@ -13,8 +13,8 @@
 	],
 	"require": {
 		"php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
-		"symfony/filesystem": "^6.4 || ^7.0",
-		"symfony/finder": "^6.4 || ^7.0"
+		"symfony/filesystem": "^6.4 || ^7.0 || ^8.0",
+		"symfony/finder": "^6.4 || ^7.0 || ^8.0"
 	},
 	"require-dev": {
 		"armin/editorconfig-cli": "^2.0",
