@@ -3,8 +3,7 @@
 # Object-oriented `.gitattributes` file handling
 
 [![Coverage](https://img.shields.io/coverallsCoverage/github/eliashaeussler/gitattributes?logo=coveralls)](https://coveralls.io/github/eliashaeussler/gitattributes)
-[![CGL](https://img.shields.io/github/actions/workflow/status/eliashaeussler/gitattributes/cgl.yaml?label=cgl&logo=github)](https://github.com/eliashaeussler/gitattributes/actions/workflows/cgl.yaml)
-[![Tests](https://img.shields.io/github/actions/workflow/status/eliashaeussler/gitattributes/tests.yaml?label=tests&logo=github)](https://github.com/eliashaeussler/gitattributes/actions/workflows/tests.yaml)
+[![CI](https://img.shields.io/github/actions/workflow/status/eliashaeussler/gitattributes/ci.yaml?label=CI&logo=github)](https://github.com/eliashaeussler/gitattributes/actions/workflows/ci.yaml)
 [![Supported PHP Versions](https://img.shields.io/packagist/dependency-v/eliashaeussler/gitattributes/php?logo=php)](https://packagist.org/packages/eliashaeussler/gitattributes)
 
 </div>

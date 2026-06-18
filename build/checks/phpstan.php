@@ -21,21 +21,14 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-use EliasHaeussler\RectorConfig\Config\Config;
-use Rector\Config\RectorConfig;
-use Rector\Privatization\Rector\MethodCall\PrivatizeLocalGetterToPropertyRector;
-use Rector\ValueObject\PhpVersion;
+use EliasHaeussler\PHPStanConfig;
 
-return static function (RectorConfig $rectorConfig): void {
-    Config::create($rectorConfig, PhpVersion::PHP_82)
-        ->in(
-            __DIR__.'/src',
-            __DIR__.'/tests',
-        )
-        ->withPHPUnit()
-        ->skip(PrivatizeLocalGetterToPropertyRector::class, [
-            __DIR__.'/src/Rule/Pattern/FilePattern.php',
-        ])
-        ->apply()
-    ;
-};
+return PHPStanConfig\Config\Config::create(dirname(__DIR__, 2))
+    ->in(
+        'src',
+        'tests',
+    )
+    ->withBleedingEdge()
+    ->maxLevel()
+    ->toArray()
+;

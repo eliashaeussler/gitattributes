@@ -21,18 +21,23 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-use EliasHaeussler\PhpCsFixerConfig;
-use Symfony\Component\Finder;
+use EliasHaeussler\RectorConfig\Config\Config;
+use Rector\Config\RectorConfig;
+use Rector\Privatization\Rector\MethodCall\PrivatizeLocalGetterToPropertyRector;
+use Rector\ValueObject\PhpVersion;
 
-$header = PhpCsFixerConfig\Rules\Header::create(
-    'eliashaeussler/gitattributes',
-    PhpCsFixerConfig\Package\Type::ComposerPackage,
-    PhpCsFixerConfig\Package\Author::create('Elias Häußler', 'elias@haeussler.dev'),
-    PhpCsFixerConfig\Package\CopyrightRange::from(2024),
-    PhpCsFixerConfig\Package\License::GPL3OrLater,
-);
+return static function (RectorConfig $rectorConfig): void {
+    $rootPath = dirname(__DIR__, 2);
 
-return PhpCsFixerConfig\Config::create()
-    ->withRule($header)
-    ->withFinder(static fn (Finder\Finder $finder) => $finder->in(__DIR__))
-;
+    Config::create($rectorConfig, PhpVersion::PHP_82)
+        ->in(
+            $rootPath.'/src',
+            $rootPath.'/tests',
+        )
+        ->withPHPUnit()
+        ->skip(PrivatizeLocalGetterToPropertyRector::class, [
+            $rootPath.'/src/Rule/Pattern/FilePattern.php',
+        ])
+        ->apply()
+    ;
+};

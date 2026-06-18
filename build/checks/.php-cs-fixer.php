@@ -21,14 +21,18 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-use EliasHaeussler\PHPStanConfig;
+use EliasHaeussler\PhpCsFixerConfig;
+use Symfony\Component\Finder;
 
-return PHPStanConfig\Config\Config::create(__DIR__)
-    ->in(
-        'src',
-        'tests',
-    )
-    ->withBleedingEdge()
-    ->maxLevel()
-    ->toArray()
+$header = PhpCsFixerConfig\Rules\Header::create(
+    'eliashaeussler/gitattributes',
+    PhpCsFixerConfig\Package\Type::ComposerPackage,
+    PhpCsFixerConfig\Package\Author::create('Elias Häußler', 'elias@haeussler.dev'),
+    PhpCsFixerConfig\Package\CopyrightRange::from(2024),
+    PhpCsFixerConfig\Package\License::GPL3OrLater,
+);
+
+return PhpCsFixerConfig\Config::create()
+    ->withRule($header)
+    ->withFinder(static fn (Finder\Finder $finder) => $finder->in(dirname(__DIR__, 2)))
 ;
